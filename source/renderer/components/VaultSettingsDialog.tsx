@@ -15,6 +15,7 @@ import { logErr, logInfo } from "../library/log";
 import { VaultSettingsLocal } from "../types";
 import { showError, showSuccess } from "../services/notifications";
 import { convertVaultToFormat } from "../actions/format";
+import { VAULTS_BACKUP_PATH } from "../../main/services/storage";
 
 const PAGE_BACKUP = "backup";
 const PAGE_FORMAT = "format";
@@ -193,8 +194,9 @@ export function VaultSettingsDialog() {
                     })}
                 />
             </FormGroup>
-            <FormGroup label={t("vault-settings.backup.path.label")} helperText={t("vault-settings.backup.path.helper")}>
-                <InputGroup
+            <FormGroup label={t("vault-settings.backup.path.label")} 
+                       helperText={t("vault-settings.backup.path.helper") + ":   " + VAULTS_BACKUP_PATH }>
+                 <InputGroup
                     disabled={!settings.localBackup}
                     placeholder={t("vault-settings.backup.path.placeholder")}
                     onChange={(evt: React.ChangeEvent<HTMLInputElement>) => setSettings({
